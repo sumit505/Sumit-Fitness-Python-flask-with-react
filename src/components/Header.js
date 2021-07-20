@@ -20,10 +20,6 @@ export const Header = () => {
           <li><Link to="/contact" data="CONTACT">CONTACT</Link></li>
         </menu>
       </nav>
-      <div className="hero">
-        <h1 class="primary_heading">PUT YOURSELF FIRST</h1>
-        <Link to="contact" class="btn btn_light">CONTACT NOW</Link>
-      </div>
     </header>
   )
 }

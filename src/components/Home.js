@@ -1,8 +1,13 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export const Home = () => {
     return (
         <div>
+            <div className="hero">
+                <h1 className="primary_heading">PUT YOURSELF FIRST</h1>
+                <Link to="contact" className="btn btn_light">CONTACT NOW</Link>
+            </div>
             <section className="message">
                 <div>
                     <h1 className="primary_heading">GET THERE WITH FITNESS FIRST</h1>

@@ -1,6 +1,22 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
 export const Contact = () => {
+    const { register, handleSubmit, reset } = useForm({
+        defaultValues: {
+            name: '',
+            email: '',
+            subject: '',
+            concern: ''
+        }
+    })
+
+    const contactFormSubmit = data => {
+        console.log(data)
+        alert("Your form submitted successfully!")
+        reset();
+    }
+
     return (
         <div>
             <section className="contact">
@@ -11,11 +27,11 @@ export const Contact = () => {
                     <p><strong>Email:</strong> fitnessfirst@contact.us.com</p>
                     <p>If you have any feedback or questions about our clubs, our website or our service in general, please send us a message by completing our enquiry form.</p>
                 </div>
-                <form className="contact_form" id="contact_form">
-                    <input type="text" name="name" id="name" placeholder="Name" />
-                    <input type="email" name="email" id="email" placeholder="Email Address" />
-                    <input type="text" name="subject" id="subject" placeholder="Subject" />
-                    <textarea name="concern" id="concern" cols="30" rows="10" placeholder="SEND MESSAGE"></textarea>
+                <form className="contact_form" onSubmit={handleSubmit(contactFormSubmit)}>
+                    <input {...register("name", { required: true })} placeholder="Name" />
+                    <input type="email" {...register("email", { required: true, pattern: /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i })} placeholder="Email Address" />
+                    <input {...register("subject", { required: true })} placeholder="Subject" />
+                    <textarea {...register("concern", { required: true })} id="concern" cols="30" rows="10" placeholder="SEND MESSAGE"></textarea>
                     <button type="submit" className="btn btn_dark">SEND MESSAGE</button>
                 </form>
             </section>

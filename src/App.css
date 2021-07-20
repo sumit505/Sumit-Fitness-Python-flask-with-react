@@ -9,7 +9,7 @@
 }
 
 header {
-  min-height: 100vh;
+  height: auto;
   width: 100%;
 }
 
@@ -86,7 +86,7 @@ nav menu li a:hover::before {
 }
 
 
-header .hero {
+.hero {
   width: 100%;
   height: 85vh;
   display: flex;
@@ -99,7 +99,7 @@ header .hero {
   background-attachment: fixed;
 }
 
-header .hero .primary_heading {
+.hero .primary_heading {
   font-size: 3rem;
   letter-spacing: 0.75rem;
   word-spacing: 1rem; 
@@ -291,10 +291,6 @@ input, textarea {
   width: 30%;
   grid-column: 1/-1;
   margin: 2rem auto;
-}
-
-.testimonials {
-  
 }
 
 footer {

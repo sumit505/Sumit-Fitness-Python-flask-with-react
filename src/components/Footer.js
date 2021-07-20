@@ -9,7 +9,7 @@ export const Footer = () => {
                 <p>More than 60 clubs across NSW, ACT, VIC and QLD. More opportunities to put yourself first.</p>
             </div>
             <div>
-                <h3 class="secondary_heading">MENU</h3>
+                <h3 className="secondary_heading">MENU</h3>
                 <Link to="/">HOME</Link>
                 <Link to="/gallery">GALLERY</Link>
                 <Link to="/about">ABOUT</Link>
