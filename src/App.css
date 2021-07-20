@@ -444,3 +444,14 @@ footer div h3 {
 .contact .primary_heading {
   text-align: left;
 }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 2rem 3rem;
+  grid-gap: 1rem;
+}
+
+.gallery img {
+  width: 100% !important;
+}

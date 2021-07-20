@@ -10,6 +10,7 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Contact } from './components/Contact'
 import { About } from './components/About'
+import { Gallery } from './components/Gallery'
 
 import { Home } from './components/Home'
 
@@ -21,6 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/gallery">
+            <Gallery />
           </Route>
           <Route path="/about">
             <About />
