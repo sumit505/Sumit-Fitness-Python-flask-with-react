@@ -11,6 +11,8 @@ import { Footer } from './components/Footer'
 import { Contact } from './components/Contact'
 import { About } from './components/About'
 import { Gallery } from './components/Gallery'
+import { Login } from './components/Login'
+import { Register } from './components/Register'
 
 import { Home } from './components/Home'
 
@@ -31,6 +33,12 @@ function App() {
           </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
       </div>

@@ -1,13 +1,41 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import {  useDispatch, useSelector } from 'react-redux'
+import { changeLoginStatus } from '../redux/actions/utilActions';
+import { useHistory } from 'react-router-dom'
 
 export const Header = () => {
+  const isLoggedIn = useSelector(state => state.utils.isLoggedIn)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const logout = () => {
+    dispatch(changeLoginStatus(!isLoggedIn))
+    history.push('/login')
+  }
+  
+  const showLinksDynamically = () => {
+    if(isLoggedIn){
+      return (
+        <>
+          <Link to="#" onClick={logout} >Logout</Link>
+        </>   
+      )
+    } else {
+      return (
+        <>
+          <Link to="/login" >Login</Link>
+          <Link to="/register" >Register</Link>
+        </>
+      )
+    }
+  }
+
   return (
     <header>
       <div className="top">
         <span>Put yourself first with a 5-day free trial pass today</span>
-        <Link to="/login" >Login</Link>
-        <Link to="/register" >Register</Link>
+        {showLinksDynamically()}
       </div>
       <nav>
         <menu>
