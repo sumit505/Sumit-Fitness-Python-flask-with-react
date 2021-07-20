@@ -11,6 +11,8 @@ export const Login = () => {
     const history = useHistory()
 
     const loginFormSubmit = data => {
+
+        sessionStorage.setItem('token', JSON.stringify('1234'))
         dispatch(changeLoginStatus(!isLoggedIn))
         history.push('/')
         reset()

@@ -10,6 +10,7 @@ export const Header = () => {
   const history = useHistory()
 
   const logout = () => {
+    sessionStorage.removeItem('token')
     dispatch(changeLoginStatus(!isLoggedIn))
     history.push('/login')
   }

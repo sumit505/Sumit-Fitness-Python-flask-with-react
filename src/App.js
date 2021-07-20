@@ -1,3 +1,5 @@
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -5,6 +7,7 @@ import {
   Route
 } from "react-router-dom";
 
+import { changeLoginStatus } from './redux/actions/utilActions'
 
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
@@ -13,10 +16,22 @@ import { About } from './components/About'
 import { Gallery } from './components/Gallery'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
-
 import { Home } from './components/Home'
 
 function App() {
+  const dispatch = useDispatch()
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem('token')
+    const userToken = JSON.parse(tokenString)
+    return userToken
+  }
+
+  useEffect(() => {
+    if (getToken()) {
+      dispatch(changeLoginStatus(true))
+    }
+  }, [])
+
   return (
     <Router>
       <Header />
