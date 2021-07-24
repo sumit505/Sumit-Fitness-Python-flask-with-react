@@ -14,24 +14,27 @@ export const Login = () => {
     const history = useHistory()
 
     const loginFormSubmit = async data => {
-        const response = await fetch('http://127.0.0.1:105/api/login/', {
-            method: "POST",
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
+        try {
+            const response = await fetch('http://127.0.0.1:105/api/login/', {
+                method: "POST",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+    
+            if (response.status !== 201)
+                throw new Error('Login failed')
 
-        if (response.status === 200) {
             sessionStorage.setItem('token', JSON.stringify('1234'))
             dispatch(changeLoginStatus(!isLoggedIn))
             history.push('/')
-        } else {
-            NotificationManager.error('Error message', 'Login failed');
-        }
 
-        reset()
+            reset()
+        } catch(error) {
+            NotificationManager.error('Error message', error.message);
+        }
     }
 
     return (
