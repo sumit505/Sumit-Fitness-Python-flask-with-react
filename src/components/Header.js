@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import {  useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changeLoginStatus } from '../redux/actions/utilActions';
 import { useHistory } from 'react-router-dom'
+import { NotificationContainer, NotificationManager } from 'react-notifications'
 
 export const Header = () => {
   const isLoggedIn = useSelector(state => state.utils.isLoggedIn)
@@ -14,13 +15,14 @@ export const Header = () => {
     dispatch(changeLoginStatus(!isLoggedIn))
     history.push('/login')
   }
-  
+
   const showLinksDynamically = () => {
-    if(isLoggedIn){
+    if (isLoggedIn) {
       return (
         <>
           <Link to="#" onClick={logout} >Logout</Link>
-        </>   
+          <a href="http://127.0.0.1:105/download/" download>Download JSON</a>
+        </>
       )
     } else {
       return (
