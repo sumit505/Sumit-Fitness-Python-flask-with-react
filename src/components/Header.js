@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { changeLoginStatus } from '../redux/actions/utilActions';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import { NotificationContainer, NotificationManager } from 'react-notifications'
+import { saveAs } from 'file-saver'
 
 export const Header = () => {
   const isLoggedIn = useSelector(state => state.utils.isLoggedIn)
@@ -16,12 +17,37 @@ export const Header = () => {
     history.push('/login')
   }
 
+  const downloadFile = async () => {
+    try {
+      const token = await sessionStorage.getItem('token')
+      const url = `http://127.0.0.1:105/download?token=${token}`
+      const response = await fetch(url, {
+        method: "GET",
+        mode: 'cors'
+      })
+
+      const cloneResponse = response.clone()
+
+      const responseData = await cloneResponse.json()
+      if (response.status !== 200)
+        throw new Error(responseData.message)
+
+      const responseFile = await response.blob()
+
+      saveAs(responseFile, 'json_file')
+
+      return responseFile
+    } catch (error) {
+      NotificationManager.error('Error message', error.message);
+    }
+  }
+
   const showLinksDynamically = () => {
     if (isLoggedIn) {
       return (
         <>
           <Link to="#" onClick={logout} >Logout</Link>
-          <a href="http://127.0.0.1:105/download/" download>Download JSON</a>
+          <Link to="#" onClick={downloadFile}>Download JSON</Link>
         </>
       )
     } else {
@@ -51,6 +77,7 @@ export const Header = () => {
           <li><Link to="/contact" data="CONTACT">CONTACT</Link></li>
         </menu>
       </nav>
+      <NotificationContainer />
     </header>
   )
 }

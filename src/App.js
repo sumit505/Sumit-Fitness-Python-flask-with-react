@@ -20,10 +20,9 @@ import { Home } from './components/Home'
 
 function App() {
   const dispatch = useDispatch()
-  const getToken = () => {
-    const tokenString = sessionStorage.getItem('token')
-    const userToken = JSON.parse(tokenString)
-    return userToken
+  const getToken = async () => {
+    const tokenString = await sessionStorage.getItem('token')
+    return tokenString
   }
 
   useEffect(() => {

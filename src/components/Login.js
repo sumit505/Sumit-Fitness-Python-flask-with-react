@@ -27,8 +27,9 @@ export const Login = () => {
             if (response.status !== 201)
                 throw new Error('Login failed')
 
-            sessionStorage.setItem('token', JSON.stringify('1234'))
-            dispatch(changeLoginStatus(!isLoggedIn))
+            const responseData = await response.json()
+            sessionStorage.setItem('token', responseData.token)
+            dispatch(changeLoginStatus(true))
             history.push('/')
 
             reset()
