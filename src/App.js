@@ -20,8 +20,8 @@ import { Home } from './components/Home'
 
 function App() {
   const dispatch = useDispatch()
-  const getToken = async () => {
-    const tokenString = await sessionStorage.getItem('token')
+  const getToken = () => {
+    const tokenString = sessionStorage.getItem('token')
     return tokenString
   }
 

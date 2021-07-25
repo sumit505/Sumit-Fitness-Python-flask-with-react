@@ -15,7 +15,7 @@ export const Login = () => {
 
     const loginFormSubmit = async data => {
         try {
-            const response = await fetch('http://127.0.0.1:105/api/login/', {
+            const response = await fetch('https://sumit-fitness-flask.herokuapp.com/api/login/', {
                 method: "POST",
                 mode: 'cors',
                 headers: {
@@ -24,10 +24,10 @@ export const Login = () => {
                 body: JSON.stringify(data)
             })
     
-            if (response.status !== 201)
-                throw new Error('Login failed')
-
             const responseData = await response.json()
+            if (response.status !== 201)
+                throw new Error(responseData.message)
+
             sessionStorage.setItem('token', responseData.token)
             dispatch(changeLoginStatus(true))
             history.push('/')

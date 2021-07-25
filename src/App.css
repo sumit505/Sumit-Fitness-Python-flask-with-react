@@ -487,7 +487,8 @@ footer div h3 {
 }
 
 .contact_form input,
-.contact_form textarea {
+.contact_form textarea,
+.contact_form select {
   padding: 0.5rem 0.25rem;
 }
 

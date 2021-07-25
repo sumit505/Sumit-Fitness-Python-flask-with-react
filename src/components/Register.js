@@ -9,7 +9,7 @@ export const Register = () => {
 
     const registerFormSubmit = async data => {
         try {
-            const response = await fetch('http://127.0.0.1:105/api/register/', {
+            const response = await fetch('https://sumit-fitness-flask.herokuapp.com/api/register/', {
                 method: "POST",
                 mode: 'cors',
                 headers: {
@@ -22,6 +22,7 @@ export const Register = () => {
                 throw new Error('Registration failed')
 
             NotificationManager.success('Error message', 'Registration successful');
+            
             setTimeout(()=>{
                 history.push('/login')
             }, 1000)

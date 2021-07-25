@@ -20,7 +20,7 @@ export const Header = () => {
   const downloadFile = async () => {
     try {
       const token = await sessionStorage.getItem('token')
-      const url = `http://127.0.0.1:105/download?token=${token}`
+      const url = `https://sumit-fitness-flask.herokuapp.com/download?token=${token}`
       const response = await fetch(url, {
         method: "GET",
         mode: 'cors'
@@ -34,7 +34,7 @@ export const Header = () => {
 
       const responseFile = await response.blob()
 
-      saveAs(responseFile, 'json_file')
+      saveAs(responseFile, 'user_list')
 
       return responseFile
     } catch (error) {
